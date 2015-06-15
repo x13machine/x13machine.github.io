@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hyperbolic Canvas Example</title>
+    <meta charset="utf-8"/>
+    <style>
+	/*
+A hyperbolic-canvas div with a percentage-based size must have a parent with non-zero size.
+Margin is removed for simplicity.
+*/
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: #111;
+  color:#FFF;
+}
+
+/*
+Each hyperbolic-canvas div must be of non-zero size.
+A size with a 1:1 ratio is recommended.
+In this case, it expands to fill the page.
+*/
+div.hyperbolic-canvas {
+  height: 100%;
+  width: 100%;
+}
+
+/*
+A viewport div is automatically appended into each hyperbolic-canvas div.
+It is automatically scaled to fill its parent, and cropped to a 1:1 ratio.
+It is not recommended to apply styling beyond background color.
+*/
+div.hyperbolic-canvas div.viewport {
+}
+
+/*
+An HTML canvas is automatically appended into each viewport div.
+It is automatically scaled to fit its parent.
+It is not recommended to apply styling beyond background color.
+*/
+div.hyperbolic-canvas div.viewport canvas {
+  background-color: #000;
+}
+
+	</style>
+  </head>
+  <body>
+    <div class="hyperbolic-canvas"></div>
+    <script type="application/javascript" src="lib/Angle.js"></script>
+    <script type="application/javascript" src="lib/Point.js"></script>
+    <script type="application/javascript" src="lib/Line.js"></script>
+    <script type="application/javascript" src="lib/Circle.js"></script>
+    <script type="application/javascript" src="lib/Polygon.js"></script>
+    <script type="application/javascript" src="lib/Canvas.js"></script>
+    <script type="application/javascript" src="lib/HyperbolicCanvas.js"></script>
+    <!-- TODO combine Javascripts into single file for easy loading -->
+
+    <!-- TODO remove test script -->
+    <script>
+if (typeof HyperbolicCanvas === "undefined")window.HyperbolicCanvas = {};
+
+var Point = window.Point = window.HyperbolicCanvas.Point;
+var Line = window.Line = window.HyperbolicCanvas.Line;
+var Circle = window.Circle = window.HyperbolicCanvas.Circle;
+var Polygon = window.Polygon = window.HyperbolicCanvas.Polygon;
+var Canvas = window.Canvas = window.HyperbolicCanvas.Canvas;
+
+window.onload = function () {
+	window.c = HyperbolicCanvas.canvases[0];
+
+	c.ctx.fillStyle = '#DD4814';
+
+	var n = 3;
+	var r = 0.2;
+	var p = Point.CENTER;
+	var rotation = 0;
+	var point=new Point({x:0,y:0})
+	var move=Math.TAU/120
+	var fn = function () {
+		rotation+=move
+		c.ctx.clearRect(0, 0, c.diameter, c.diameter);
+		var color='#F00'
+		c.ctx.shadowColor = color;
+		c.ctx.shadowBlur = 40;
+		c.ctx.strokeStyle = color;
+		c.ctx.lineWidth = 20;
+		var polygons = [];
+		var i=0;
+		var j=0;
+		
+		//var gon = Polygon.fromNCenterRadius(n, point, 2 * Math.atanh(r), rotation);
+		var radius=2 * Math.atanh(r)
+		var vertices = [point.distantPoint(radius, Math.TAU*(0/3)+rotation),
+						point.distantPoint(radius, Math.TAU*(1/3)+rotation),
+						point.distantPoint(radius, Math.TAU*(2/3)+rotation)]
+		var gon=new Polygon({ vertices: vertices });
+		c.strokePolygon(gon)
+
+	};
+	fn();
+	reRender = false;
+	setInterval(fn, 1000/60);
+
+};
+
+     
+    </script>
+	This is a weird bug in <a href='https://github.com/ItsNickBarry/hyperbolic-canvas'>hyperbolic-canvas<a><br>
+	Page created: 06/14/15<br>
+	<a href='/'>My website</a>
+  </body>
+</html>
+
