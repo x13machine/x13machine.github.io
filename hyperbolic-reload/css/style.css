@@ -57,8 +57,11 @@ div.hyperbolic-canvas div.viewport canvas {
 h1{
 	padding:0;
 	margin:0;
-	color: rgba(0, 86, 151, 1);
-	text-shadow: 0px 0px  10px rgba(0, 86, 151, 1);
+
+
+	text-shadow: 0px 0px  25px #F00;
+
+	color:#F00;
 }
 
 #loader span {
