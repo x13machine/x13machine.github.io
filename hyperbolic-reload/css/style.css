@@ -170,7 +170,7 @@ svg polygon{
 .button {
 	background: #2711ba;
 	background-image: linear-gradient(to bottom, #0c0161, #03001F);
-	border-radius: 3px;
+	border-radius: 2px;
 	font-family: Courier New;
 	color: #ffffff;
 	padding: 10px;
