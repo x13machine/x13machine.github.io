@@ -22,9 +22,9 @@ addEventListener("keyup", function (e) {
 
 window.onload = function () {
 	window.c = HyperbolicCanvas.canvases[0];
-
+	
 	c.ctx.fillStyle = '#DD4814';
-
+	byid('game').appendChild(c.el);
 	var r = 0.15;
 	var player={
 		x:0,
