@@ -174,12 +174,6 @@ svg polygon{
 	background-image: -ms-linear-gradient(top, #0c0161, #000000);
 	background-image: -o-linear-gradient(top, #0c0161, #000000);
 	background-image: linear-gradient(to bottom, #0c0161, #000000);
-	-webkit-border-radius: 13;
-	-moz-border-radius: 13;
-	border-radius: 13px;
-	-webkit-box-shadow: 0px 1px 3px #666666;
-	-moz-box-shadow: 0px 1px 3px #666666;
-	box-shadow: 0px 1px 3px #666666;
 	font-family: Courier New;
 	color: #ffffff;
 	padding: 10px;
