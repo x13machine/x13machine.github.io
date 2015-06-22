@@ -9,10 +9,11 @@ html, body {
 	-ms-user-select: none;
 	user-select: none;
 	color:#FFF;
+	overflow:hidden;
 }
 div.hyperbolic-canvas {
-	height: 100%;
-	width: 100%;
+	width:600px;
+	height:600px;
 }
 
 div.hyperbolic-canvas div.viewport {
@@ -38,24 +39,26 @@ div.hyperbolic-canvas div.viewport canvas {
 	height:100%;
 }
 
-#main-menu{
+.menu{
+	padding:10px
 }
 
 #content{
-	background-color: #000;
+	background-color: #030303;
 	margin:0;
 	padding:0;
 	width:600px;
 	height:600px;
 	position: absolute;
-	top: 50%;
-	left: 50%;
 	transform-origin: 0 0;
+	overflow:hidden;
 }
 
 h1{
-	color: transparent;
-	text-shadow: 0px 0px  2px rgba(0, 86, 151, 0.6);
+	padding:0;
+	margin:0;
+	color: rgba(0, 86, 151, 1);
+	text-shadow: 0px 0px  10px rgba(0, 86, 151, 1);
 }
 
 #loader span {
@@ -140,4 +143,8 @@ svg {
 
 svg polygon{
 	display:none
+}
+
+.button{
+	color:#FFF
 }

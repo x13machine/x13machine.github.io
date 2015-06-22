@@ -40,7 +40,7 @@ function load(){
 		byid('loader').style.display='none'
 		byid('playButton').style.display='block'
 	}else{
-		setTimeout(load,10)
+		setTimeout(load,200)
 	}
 }
 

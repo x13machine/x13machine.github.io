@@ -1,6 +1,7 @@
 function byid(ID){
 	return document.getElementById(ID)
 }
+if (typeof HyperbolicCanvas === "undefined")window.HyperbolicCanvas = {};
 
 var Point = window.Point = window.HyperbolicCanvas.Point;
 var Line = window.Line = window.HyperbolicCanvas.Line;
@@ -19,6 +20,11 @@ addEventListener("keyup", function (e) {
 	delete keysDown[e.keyCode];
 }, false);
 
+window.onload = function () {
+	window.c = HyperbolicCanvas.canvases[0];
+
+	c.ctx.fillStyle = '#DD4814';
+
 	var r = 0.15;
 	var player={
 		x:0,
@@ -32,12 +38,6 @@ addEventListener("keyup", function (e) {
 		maxSpeed:0.1,
 	}
 	
-window.onload = function () {
-	window.c = HyperbolicCanvas.canvases[0];
-
-	c.ctx.fillStyle = '#DD4814';
-
-
 	var fn = function () {
 		if(37 in keysDown || 65 in keysDown)player.rotation+=player.rotSpeed//left key or A key
 		if(39 in keysDown || 68 in keysDown)player.rotation-=player.rotSpeed//right key or D key
@@ -112,9 +112,22 @@ window.onload = function () {
 window.onresize=function(){
 	var size=Math.min(innerWidth,innerHeight)
 	var per=size/byid('content').offsetWidth
-	//console.log(per)
-	//var tx=-cx*(scalex-1)
-	byid('content').style.transform='translate(-50%, -50%) scale('+per+')'
+	
+	byid('content').style.transform='scale('+per+')'
+	if(per<1)per=1
+	console.log(per)
 	//byid('content').style.margin=(byid('content').offsetWidth*per)+'px'
+	byid('content').style.left=(innerWidth/2)-(size)/2+'px'
+	byid('content').style.top=(innerHeight/2)-(size)/2+'px'
 }
 onresize()
+
+byid('creditsButton').onclick=function(){
+	byid('credits').style.display='block'
+	byid('main-menu').style.display='none'	
+}
+
+byid('newGame').onclick=function(){
+	byid('game').style.display='block'
+	byid('main-menu').style.display='none'
+}
