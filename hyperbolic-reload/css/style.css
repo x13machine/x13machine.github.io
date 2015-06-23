@@ -11,17 +11,21 @@ html, body {
 	color:#FFF;
 	overflow:hidden;
 }
-div.hyperbolic-canvas {
+.hyperbolic-canvas {
 	width:600px;
 	height:600px;
+	
 }
 
-div.hyperbolic-canvas div.viewport {
+.hyperbolic-canvas .viewport {
 
 }
 
-div.hyperbolic-canvas div.viewport canvas {
-
+.hyperbolic-canvas canvas{
+	border:solid #FFF 1px;
+	position:absolute;
+	top:-1.5px;
+	left:-1.5px;
 }
 
 #loading-screen{
@@ -171,17 +175,16 @@ svg polygon{
 	background: #2711ba;
 	background-image: linear-gradient(to bottom, #0c0161, #03001F);
 	border-radius: 2px;
-	font-family: Courier New;
-	color: #ffffff;
+	color: #fff;
 	padding: 10px;
 	margin:10px;
 	margin-right:20px;
-	text-decoration: none;
+
 	cursor: pointer;
 	margin-left:0;
 }
 
-.button:hover {
+.button:active {
 	background: #000000;
 	background-image: linear-gradient(to bottom, #03001F, #0c0161);
 	text-decoration: none;
