@@ -22,10 +22,6 @@ html, body {
 }
 
 .hyperbolic-canvas canvas{
-	border:solid #FFF 1px;
-	position:absolute;
-	top:-1.5px;
-	left:-1.5px;
 }
 
 #loading-screen{

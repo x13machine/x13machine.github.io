@@ -30,7 +30,7 @@ var player={
 	rotSpeed:Math.TAU/1000,
 	rotation:0,
 	acceleration:0.00005,
-	maxSpeed:0.01,
+	maxSpeed:0.005,
 }
 var bulletSpeed=0.005
 var bulletRate=1000/10 // 10 hertz
@@ -112,6 +112,15 @@ var fn = function () {
 	//clears screen
 	c.ctx.clearRect(0, 0, c.diameter, c.diameter);
 	
+	var color='#0F0'
+	c.ctx.shadowColor = color;
+	c.ctx.shadowBlur = 40;
+	c.ctx.strokeStyle = color;
+	c.ctx.lineWidth = 2;
+	//border
+	c.ctx.beginPath();
+	c.ctx.arc(300, 300, 290, 0, 2 * Math.PI, false);
+	c.ctx.stroke();	
 	
 	//renders player
 	var color='#F00'
