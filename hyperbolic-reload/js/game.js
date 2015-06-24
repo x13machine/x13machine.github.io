@@ -20,7 +20,7 @@ addEventListener("keyup", function (e) {
 
 var r = 0.15;
 
-var maxDistance=6
+var maxDistance=4
 var player={
 	x:0,
 	y:0,
@@ -30,7 +30,7 @@ var player={
 	rotSpeed:Math.TAU/1000,
 	rotation:0,
 	acceleration:0.00005,
-	maxSpeed:0.1,
+	maxSpeed:0.01,
 }
 var bulletSpeed=0.005
 var bulletRate=1000/10 // 10 hertz
@@ -47,6 +47,9 @@ var fn = function () {
 	if(37 in keysDown || 65 in keysDown)player.rotation+=player.rotSpeed*milliChange//left key or A key
 	if(39 in keysDown || 68 in keysDown)player.rotation-=player.rotSpeed*milliChange//right key or D key
 
+
+	player.lax=player.ax
+	player.lay=player.ay
 	if(38 in keysDown || 87 in keysDown){//up key or W key
 		var vec=Point.CENTER.distantPoint(player.acceleration, player.rotation)
 		player.ax+=2 * Math.atanh(vec.x)
@@ -57,6 +60,15 @@ var fn = function () {
 		var vec=Point.CENTER.distantPoint(player.acceleration, player.rotation+Math.PI)
 		player.ax+=2 * Math.atanh(vec.x)
 		player.ay+=2 * Math.atanh(vec.y)
+	
+	}
+	
+	//limit speed
+	var speed=new Point({x:player.ax,y:player.ay}).distanceFromCenter();
+	console.log(speed)
+	if(speed>player.maxSpeed){
+		player.ax=player.lax
+		player.ay=player.lay
 	}
 	
 	if(32 in keysDown){//space bar
@@ -93,15 +105,6 @@ var fn = function () {
 	//warp the player around
 	var currentDistance = location.distanceFromCenter();
 	if (currentDistance > maxDistance) {
-		/* weird mess
-			// doesn't work
-			var newPoint = Point.givenHyperbolicPolarCoordinates(2 * maxDistance - currentDistance, player.rotation + Math.PI);
-			//console.log(newPoint)
-			player.x=2 * Math.atanh(newPoint.x);
-			player.y=2 * Math.atanh(newPoint.y);
-		*/
-		
-		//this doesn't work either
 		player.x=-player.x
 		player.y=-player.y
 	}
