@@ -43,13 +43,17 @@ var fn = function () {
 	var milliChange=now-lastFrame
 	var change=milliChange/1000
 	lastFrame=now
-
+	if(change>1){
+		requestAnimFrame(fn)
+		return ;
+	}
 	if(37 in keysDown || 65 in keysDown)player.rotation+=player.rotSpeed*milliChange//left key or A key
 	if(39 in keysDown || 68 in keysDown)player.rotation-=player.rotSpeed*milliChange//right key or D key
-
-
+	
 	player.lax=player.ax
 	player.lay=player.ay
+	player.lx=player.x
+	player.ly=player.y
 	if(38 in keysDown || 87 in keysDown){//up key or W key
 		var vec=Point.CENTER.distantPoint(player.acceleration, player.rotation)
 		player.ax+=2 * Math.atanh(vec.x)
@@ -105,21 +109,23 @@ var fn = function () {
 	//warp the player around
 	var currentDistance = location.distanceFromCenter();
 	if (currentDistance > maxDistance) {
-		player.x=-player.x
-		player.y=-player.y
+		player.x=-player.lx
+		player.y=-player.ly
 	}
 	
 	//clears screen
 	c.ctx.clearRect(0, 0, c.diameter, c.diameter);
 	
+	//border
+	var rad=c.viewport.offsetWidth/2
 	var color='#0F0'
 	c.ctx.shadowColor = color;
-	c.ctx.shadowBlur = 40;
+	c.ctx.shadowBlur = 25;
 	c.ctx.strokeStyle = color;
-	c.ctx.lineWidth = 2;
-	//border
+	c.ctx.lineWidth = 0;
+	
 	c.ctx.beginPath();
-	c.ctx.arc(300, 300, 290, 0, 2 * Math.PI, false);
+	c.ctx.arc(rad, rad, rad, 0, 2 * Math.PI, false);
 	c.ctx.stroke();	
 	
 	//renders player
