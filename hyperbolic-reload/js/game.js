@@ -20,7 +20,7 @@ addEventListener("keyup", function (e) {
 
 var r = 0.15;
 
-var maxDistance=4
+var maxDistance=5
 var player={
 	x:0,
 	y:0,
@@ -69,7 +69,6 @@ var fn = function () {
 	
 	//limit speed
 	var speed=new Point({x:player.ax,y:player.ay}).distanceFromCenter();
-	console.log(speed)
 	if(speed>player.maxSpeed){
 		player.ax=player.lax
 		player.ay=player.lay

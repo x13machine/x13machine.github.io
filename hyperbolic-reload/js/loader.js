@@ -1,4 +1,29 @@
+var percent=0
+function load(){
+	percent++;
 
+	try{
+	var pols=polygons.length;
+	for(var i=0;i<pols;i++){
+		polygons[i].style.display=(i/pols>percent/100)?'none':'block'
+	}
+	}catch(err){}
+	if(percent>=100){
+		byid('loader').style.display='none'
+		byid('playButton').style.display='block'
+	}else{
+		setTimeout(load,1)
+	}
+}
+
+load();
+
+byid('playButton').onclick=function(){
+	byid('loading-screen').style.display='none'
+	byid('main-menu').style.display='block'
+}
+
+try{
 var tl = new TimelineMax({
   repeat: -1
 });
@@ -28,25 +53,5 @@ var polygons = document.querySelectorAll('svg polygon');
 tl.staggerFromTo(polygons, 1, fromSky, toViewport, 0.025, 0)
        .staggerTo(polygons, 0.875, toGround, 0.0375, '+=0.125');
        
+}catch(err){}
 
-var percent=0
-function load(){
-	percent++;
-	var pols=polygons.length;
-	for(var i=0;i<pols;i++){
-		polygons[i].style.display=(i/pols>percent/100)?'none':'block'
-	}
-	if(percent>=100){
-		byid('loader').style.display='none'
-		byid('playButton').style.display='block'
-	}else{
-		setTimeout(load,1)
-	}
-}
-
-load();
-
-byid('playButton').onclick=function(){
-	byid('loading-screen').style.display='none'
-	byid('main-menu').style.display='block'
-}
