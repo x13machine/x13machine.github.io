@@ -15,7 +15,6 @@ html, body {
 .hyperbolic-canvas {
 	width:600px;
 	height:600px;
-	
 }
 
 .hyperbolic-canvas .viewport {
@@ -41,7 +40,7 @@ html, body {
 }
 
 .menu{
-	padding:10px
+	padding:10px;
 }
 
 #content{
@@ -148,37 +147,21 @@ svg {
 svg polygon{
 	display:none
 }
-/*
+
 .button{
-	color:#FFF;
-	border:solid #999 1px;
-	background:rgba(0,0,128,0.6);
-	margin:10px;
-	display:block;
-	text-align: center;
-	vertical-align: middle;
-	line-height: 90px;    
-	width:100px;
-	height:100px;
-	float:left;
-	cursor: pointer;
-}
-
-.button:hover{
-	background:rgba(128,0,0,0.6);
-}*/
-
-.button {
 	background: #2711ba;
-	background-image: linear-gradient(to bottom, #0c0161, #03001F);
-	border-radius: 2px;
+	background-image: linear-gradient(to bottom, #100091, #03001F);
+	border-radius: 3px;
 	color: #fff;
 	padding: 10px;
 	margin:10px;
 	margin-right:20px;
-
 	cursor: pointer;
 	margin-left:0;
+}
+
+.button:hover{
+	background-image: linear-gradient(to bottom, #0c0161, #03001F);
 }
 
 .button:active {
@@ -187,6 +170,3 @@ svg polygon{
 	text-decoration: none;
 }
 
-#newGame{
-
-}
